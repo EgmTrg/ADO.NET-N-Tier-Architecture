@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace ADO.NET.ORM.Entity
 {
-    class Islem
+    public class Islem
     {
         public int IslemNo { get; set; }
-        public int OgrNo { get; set; }
-        public int KitapNo { get; set; }
-        public DateTime aTarih { get; set; }
-        public DateTime vTarih { get; set; }
-
+        public int ogrno { get; set; }
+        public int kitapno { get; set; }
+        public DateTime atarih { get; set; }
+        public DateTime vtarih { get; set; }
     }
 }

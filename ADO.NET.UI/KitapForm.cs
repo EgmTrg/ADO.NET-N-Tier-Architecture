@@ -1,6 +1,4 @@
-﻿using ADO.NET.ORM.Entity;
-using ADO.NET.ORM.Facade;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,12 +19,12 @@ namespace ADO.NET.UI
 
         private void KitapForm_Load(object sender, EventArgs e)
         {
-            Listele();
+            //Listele();
         }
 
         private void kaydet_button_Click(object sender, EventArgs e)
         {
-            Kitap kitap = new Kitap();
+            /*Kitap kitap = new Kitap();
             kitap.KitapAd = kitapAdi_textBox.Text;
             kitap.SayfaSayisi = Convert.ToInt32(sayfaSayisi_numericUpDown.Value);
             kitap.Puan = Convert.ToInt32(puani_numericUpDown.Value);
@@ -37,10 +35,10 @@ namespace ADO.NET.UI
                 MessageBox.Show("Kayit basarili bir sekilde eklenmistir.");
             else
                 MessageBox.Show("Bir hata olustu. Eklenemedi!");
-            Listele();
+            Listele();*/
         }
 
-        private void Listele()
+        /*private void Listele()
         {
             dataGridView1.DataSource = Kitap_ORM.Select();
             yazar_comboBox.DisplayMember = "Yazar Ad/Soyad";
@@ -55,18 +53,18 @@ namespace ADO.NET.UI
             dataGridView1.Columns["YazarID"].Visible = false;
             dataGridView1.Columns["TurNo"].Visible = false;
             dataGridView1.Columns["YazarNo"].Visible = false;
-        }
+        }*/
 
         private void yenile_button_Click(object sender, EventArgs e)
         {
-            Listele();
+            //Listele();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            kitapAdi_textBox.Text = dataGridView1.CurrentRow.Cells["Kitap Adi"].Value.ToString();
+            /*kitapAdi_textBox.Text = dataGridView1.CurrentRow.Cells["Kitap Adi"].Value.ToString();
             puani_numericUpDown.Value = Convert.ToDecimal(dataGridView1.CurrentRow.Cells["Puan"].Value);
-            sayfaSayisi_numericUpDown.Value = Convert.ToDecimal(dataGridView1.CurrentRow.Cells["Sayfa Sayisi"].Value);
+            sayfaSayisi_numericUpDown.Value = Convert.ToDecimal(dataGridView1.CurrentRow.Cells["Sayfa Sayisi"].Value);*/
         }
     }
 }

@@ -11,11 +11,18 @@ namespace ADO.NET.ORM
 {
     class Tools
     {
-        private static SqlConnection baglanti = new SqlConnection(ConfigurationManager.ConnectionStrings["Baglanti"].ConnectionString);
+        private static SqlConnection baglanti;
 
         public static SqlConnection Baglanti
         {
-            get { return baglanti; }
+            get
+            {
+                if (baglanti == null)
+                    baglanti = new SqlConnection(ConfigurationManager.ConnectionStrings["LocalDB"].ConnectionString);
+                // yukaridaki if'in aynisi. baglanti = baglanti ?? new SqlConnection(); 
+                return baglanti;
+            }
+
             set { baglanti = value; }
         }
 
