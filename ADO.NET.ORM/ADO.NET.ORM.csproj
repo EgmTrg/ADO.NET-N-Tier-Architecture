@@ -55,5 +55,8 @@
       <Name>ADO.NET.Entity</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ORMDiagram.cd" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,7 +16,7 @@ namespace ADO.NET.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new KitapForm());
+            Application.Run(new MainForm());
         }
     }
 }

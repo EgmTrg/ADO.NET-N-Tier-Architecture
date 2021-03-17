@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IslemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IslemForm.Designer.cs">
+      <DependentUpon>IslemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="KitapForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +66,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="IslemForm.resx">
+      <DependentUpon>IslemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="KitapForm.resx">
       <DependentUpon>KitapForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,6 +98,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ADO.NET.Entity\ADO.NET.Entity.csproj">
+      <Project>{8be44240-69e7-47d1-a250-430f3547a0f5}</Project>
+      <Name>ADO.NET.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ADO.NET.ORM\ADO.NET.ORM.csproj">
       <Project>{11e7c1c1-cce9-4952-aa55-3d35cb384573}</Project>
       <Name>ADO.NET.ORM</Name>
