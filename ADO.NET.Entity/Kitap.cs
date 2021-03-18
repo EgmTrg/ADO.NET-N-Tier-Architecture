@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace ADO.NET.Entity
 {
-    public class Kitap
+    public class Kitap : EntityBase
     {
+        public override string PrimaryKey => "kitapno";
         public int kitapno { get; set; }
         public string ad { get; set; }
         public int sayfasayisi { get; set; }
         public int puan { get; set; }
         public int yazarno { get; set; }
         public int turno { get; set; }
+
     }
 }

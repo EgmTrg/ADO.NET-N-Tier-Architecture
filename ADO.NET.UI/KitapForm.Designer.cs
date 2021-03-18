@@ -62,7 +62,6 @@ namespace ADO.NET.UI
             // 
             // kitapAdi_textBox
             // 
-            this.kitapAdi_textBox.Enabled = false;
             this.kitapAdi_textBox.Font = new System.Drawing.Font("Comic Sans MS", 12F);
             this.kitapAdi_textBox.Location = new System.Drawing.Point(12, 35);
             this.kitapAdi_textBox.Name = "kitapAdi_textBox";
@@ -81,7 +80,6 @@ namespace ADO.NET.UI
             // 
             // sayfaSayisi_numericUpDown
             // 
-            this.sayfaSayisi_numericUpDown.Enabled = false;
             this.sayfaSayisi_numericUpDown.Font = new System.Drawing.Font("Comic Sans MS", 12F);
             this.sayfaSayisi_numericUpDown.Location = new System.Drawing.Point(661, 36);
             this.sayfaSayisi_numericUpDown.Maximum = new decimal(new int[] {
@@ -105,7 +103,6 @@ namespace ADO.NET.UI
             // 
             // puani_numericUpDown
             // 
-            this.puani_numericUpDown.Enabled = false;
             this.puani_numericUpDown.Font = new System.Drawing.Font("Comic Sans MS", 12F);
             this.puani_numericUpDown.Location = new System.Drawing.Point(504, 36);
             this.puani_numericUpDown.Maximum = new decimal(new int[] {
@@ -129,18 +126,17 @@ namespace ADO.NET.UI
             // 
             // temizle_button
             // 
-            this.temizle_button.Enabled = false;
             this.temizle_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
             this.temizle_button.Location = new System.Drawing.Point(986, 35);
             this.temizle_button.Name = "temizle_button";
             this.temizle_button.Size = new System.Drawing.Size(77, 31);
             this.temizle_button.TabIndex = 0;
-            this.temizle_button.Text = "Temizle";
+            this.temizle_button.Text = "Sil";
             this.temizle_button.UseVisualStyleBackColor = true;
+            this.temizle_button.Click += new System.EventHandler(this.temizle_button_Click);
             // 
             // yazar_comboBox
             // 
-            this.yazar_comboBox.Enabled = false;
             this.yazar_comboBox.Font = new System.Drawing.Font("Comic Sans MS", 12F);
             this.yazar_comboBox.FormattingEnabled = true;
             this.yazar_comboBox.Location = new System.Drawing.Point(258, 35);
@@ -150,7 +146,6 @@ namespace ADO.NET.UI
             // 
             // kaydet_button
             // 
-            this.kaydet_button.Enabled = false;
             this.kaydet_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
             this.kaydet_button.Location = new System.Drawing.Point(986, 3);
             this.kaydet_button.Name = "kaydet_button";
@@ -162,7 +157,6 @@ namespace ADO.NET.UI
             // 
             // tur_comboBox
             // 
-            this.tur_comboBox.Enabled = false;
             this.tur_comboBox.Font = new System.Drawing.Font("Comic Sans MS", 12F);
             this.tur_comboBox.FormattingEnabled = true;
             this.tur_comboBox.Location = new System.Drawing.Point(814, 35);
@@ -203,7 +197,6 @@ namespace ADO.NET.UI
             // 
             // yenile_button
             // 
-            this.yenile_button.Enabled = false;
             this.yenile_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
             this.yenile_button.Location = new System.Drawing.Point(1068, 35);
             this.yenile_button.Name = "yenile_button";
@@ -211,6 +204,7 @@ namespace ADO.NET.UI
             this.yenile_button.TabIndex = 0;
             this.yenile_button.Text = "Yenile";
             this.yenile_button.UseVisualStyleBackColor = true;
+            this.yenile_button.Click += new System.EventHandler(this.yenile_button_Click);
             // 
             // dataGridView1
             // 
@@ -220,6 +214,7 @@ namespace ADO.NET.UI
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1157, 656);
             this.dataGridView1.TabIndex = 9;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // KitapForm
             // 

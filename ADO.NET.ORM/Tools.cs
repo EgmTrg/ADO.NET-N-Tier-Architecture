@@ -35,8 +35,9 @@ namespace ADO.NET.ORM
                 int etk = cmd.ExecuteNonQuery();
                 return etk > 0 ? true : false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
                 return false;
             }
             finally
