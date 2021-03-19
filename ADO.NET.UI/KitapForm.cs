@@ -38,13 +38,13 @@ namespace ADO.NET.UI
         {
             dataGridView1.DataSource = kitapORM.Listele();
 
-            /*dataGridView1.Columns["KitapID"].Visible = false;
+            dataGridView1.Columns["KitapID"].Visible = false;
             dataGridView1.Columns["TurNo"].Visible = false;
             dataGridView1.Columns["YazarNo"].Visible = false;
             dataGridView1.Columns["YazarID"].Visible = false;
             dataGridView1.Columns["TurID"].Visible = false;
             dataGridView1.Columns["Yazar Adi"].Visible = false;
-            dataGridView1.Columns["Yazar Soyadi"].Visible = false;*/
+            dataGridView1.Columns["Yazar Soyadi"].Visible = false;
         }
 
         private void kaydet_button_Click(object sender, EventArgs e)

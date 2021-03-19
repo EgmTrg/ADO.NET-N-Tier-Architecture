@@ -151,7 +151,7 @@ namespace ADO.NET.UI
             this.kaydet_button.Name = "kaydet_button";
             this.kaydet_button.Size = new System.Drawing.Size(159, 31);
             this.kaydet_button.TabIndex = 0;
-            this.kaydet_button.Text = "Kaydet";
+            this.kaydet_button.Text = "Ekle";
             this.kaydet_button.UseVisualStyleBackColor = true;
             this.kaydet_button.Click += new System.EventHandler(this.kaydet_button_Click);
             // 
