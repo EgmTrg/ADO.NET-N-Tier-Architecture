@@ -38,10 +38,11 @@ namespace ADO.NET.UI
             this.yazar_label = new System.Windows.Forms.Label();
             this.temizle_button = new System.Windows.Forms.Button();
             this.yazar_comboBox = new System.Windows.Forms.ComboBox();
-            this.kaydet_button = new System.Windows.Forms.Button();
+            this.Ekle_button = new System.Windows.Forms.Button();
             this.tur_comboBox = new System.Windows.Forms.ComboBox();
             this.kitapAdi_label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Guncelle_button = new System.Windows.Forms.Button();
             this.yenile_button = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.sayfaSayisi_numericUpDown)).BeginInit();
@@ -129,7 +130,7 @@ namespace ADO.NET.UI
             this.temizle_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
             this.temizle_button.Location = new System.Drawing.Point(986, 35);
             this.temizle_button.Name = "temizle_button";
-            this.temizle_button.Size = new System.Drawing.Size(77, 31);
+            this.temizle_button.Size = new System.Drawing.Size(79, 31);
             this.temizle_button.TabIndex = 0;
             this.temizle_button.Text = "Sil";
             this.temizle_button.UseVisualStyleBackColor = true;
@@ -144,16 +145,16 @@ namespace ADO.NET.UI
             this.yazar_comboBox.Size = new System.Drawing.Size(240, 31);
             this.yazar_comboBox.TabIndex = 7;
             // 
-            // kaydet_button
+            // Ekle_button
             // 
-            this.kaydet_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            this.kaydet_button.Location = new System.Drawing.Point(986, 3);
-            this.kaydet_button.Name = "kaydet_button";
-            this.kaydet_button.Size = new System.Drawing.Size(159, 31);
-            this.kaydet_button.TabIndex = 0;
-            this.kaydet_button.Text = "Ekle";
-            this.kaydet_button.UseVisualStyleBackColor = true;
-            this.kaydet_button.Click += new System.EventHandler(this.kaydet_button_Click);
+            this.Ekle_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
+            this.Ekle_button.Location = new System.Drawing.Point(986, 3);
+            this.Ekle_button.Name = "Ekle_button";
+            this.Ekle_button.Size = new System.Drawing.Size(79, 31);
+            this.Ekle_button.TabIndex = 0;
+            this.Ekle_button.Text = "Ekle";
+            this.Ekle_button.UseVisualStyleBackColor = true;
+            this.Ekle_button.Click += new System.EventHandler(this.ekle_button_Click);
             // 
             // tur_comboBox
             // 
@@ -178,7 +179,8 @@ namespace ADO.NET.UI
             // 
             this.panel1.Controls.Add(this.kitapAdi_label);
             this.panel1.Controls.Add(this.tur_comboBox);
-            this.panel1.Controls.Add(this.kaydet_button);
+            this.panel1.Controls.Add(this.Guncelle_button);
+            this.panel1.Controls.Add(this.Ekle_button);
             this.panel1.Controls.Add(this.yazar_comboBox);
             this.panel1.Controls.Add(this.yenile_button);
             this.panel1.Controls.Add(this.temizle_button);
@@ -195,12 +197,23 @@ namespace ADO.NET.UI
             this.panel1.Size = new System.Drawing.Size(1157, 75);
             this.panel1.TabIndex = 8;
             // 
+            // Guncelle_button
+            // 
+            this.Guncelle_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
+            this.Guncelle_button.Location = new System.Drawing.Point(1068, 3);
+            this.Guncelle_button.Name = "Guncelle_button";
+            this.Guncelle_button.Size = new System.Drawing.Size(79, 31);
+            this.Guncelle_button.TabIndex = 0;
+            this.Guncelle_button.Text = "Guncelle";
+            this.Guncelle_button.UseVisualStyleBackColor = true;
+            this.Guncelle_button.Click += new System.EventHandler(this.Guncelle_Click);
+            // 
             // yenile_button
             // 
             this.yenile_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
             this.yenile_button.Location = new System.Drawing.Point(1068, 35);
             this.yenile_button.Name = "yenile_button";
-            this.yenile_button.Size = new System.Drawing.Size(77, 31);
+            this.yenile_button.Size = new System.Drawing.Size(79, 31);
             this.yenile_button.TabIndex = 0;
             this.yenile_button.Text = "Yenile";
             this.yenile_button.UseVisualStyleBackColor = true;
@@ -208,6 +221,7 @@ namespace ADO.NET.UI
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 75);
@@ -247,12 +261,13 @@ namespace ADO.NET.UI
         private System.Windows.Forms.Label yazar_label;
         private System.Windows.Forms.Button temizle_button;
         private System.Windows.Forms.ComboBox yazar_comboBox;
-        private System.Windows.Forms.Button kaydet_button;
+        private System.Windows.Forms.Button Ekle_button;
         private System.Windows.Forms.ComboBox tur_comboBox;
         private System.Windows.Forms.Label kitapAdi_label;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button yenile_button;
+        private System.Windows.Forms.Button Guncelle_button;
     }
 }
 

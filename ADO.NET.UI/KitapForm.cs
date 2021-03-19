@@ -47,7 +47,7 @@ namespace ADO.NET.UI
             dataGridView1.Columns["Yazar Soyadi"].Visible = false;
         }
 
-        private void kaydet_button_Click(object sender, EventArgs e)
+        private void ekle_button_Click(object sender, EventArgs e)
         {
             Kitap kitap = new Kitap();
             kitap.ad = kitapAdi_textBox.Text;
@@ -56,7 +56,8 @@ namespace ADO.NET.UI
             kitap.yazarno = Convert.ToInt32(yazar_comboBox.SelectedValue);
             kitap.turno = Convert.ToInt32(tur_comboBox.SelectedValue);
 
-            kitapORM.Ekle(kitap);
+            bool durum = kitapORM.Ekle(kitap);
+            IslemDurumu(durum);
         }
 
         private void yenile_button_Click(object sender, EventArgs e)
@@ -66,7 +67,8 @@ namespace ADO.NET.UI
 
         private void temizle_button_Click(object sender, EventArgs e)
         {
-            kitapORM.Sil(Convert.ToInt32(kitapAdi_textBox.Tag));
+            bool durum = kitapORM.Sil(Convert.ToInt32(kitapAdi_textBox.Tag));
+            IslemDurumu(durum);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -76,6 +78,29 @@ namespace ADO.NET.UI
             puani_numericUpDown.Value = (int)dataGridView1.CurrentRow.Cells["Puan"].Value;
             sayfaSayisi_numericUpDown.Value = (int)dataGridView1.CurrentRow.Cells["Sayfa Sayisi"].Value;
             yazar_comboBox.SelectedValue = (int)dataGridView1.CurrentRow.Cells["YazarID"].Value;
+        }
+
+        private void Guncelle_Click(object sender, EventArgs e)
+        {
+            Kitap kitap = new Kitap();
+            kitap.kitapno = Convert.ToInt32(kitapAdi_textBox.Tag);
+            kitap.ad = kitapAdi_textBox.Text;
+            kitap.puan = (int)puani_numericUpDown.Value;
+            kitap.sayfasayisi = (int)sayfaSayisi_numericUpDown.Value;
+            kitap.turno = (int)tur_comboBox.SelectedValue;
+            kitap.yazarno= (int)yazar_comboBox.SelectedValue;
+
+            bool durum = kitapORM.Guncelle(kitap);
+            IslemDurumu(durum);
+        }
+
+        private void IslemDurumu(bool durum)
+        {
+            if (durum)
+                MessageBox.Show("İşleminiz başarılı bir şekilde gerçekleşmiştir.","İşlem Durumu!",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            else
+                MessageBox.Show("İşleminiz başarısız!.", "İşlem Durumu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            RefreshDataGridView();
         }
     }
 }
