@@ -101,6 +101,7 @@ namespace ADO.NET.UI
             this.turToolStripMenuItem.Name = "turToolStripMenuItem";
             this.turToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
             this.turToolStripMenuItem.Text = "Tur";
+            this.turToolStripMenuItem.Click += new System.EventHandler(this.turToolStripMenuItem_Click);
             // 
             // yazarToolStripMenuItem
             // 

@@ -46,10 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IslemForm.cs">
+    <Compile Include="Pages\SelectPage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IslemForm.Designer.cs">
+    <Compile Include="Pages\SelectPage.Designer.cs">
+      <DependentUpon>SelectPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableForms\IslemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableForms\IslemForm.Designer.cs">
       <DependentUpon>IslemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
@@ -58,21 +64,30 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="KitapForm.cs">
+    <Compile Include="TableForms\KitapForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KitapForm.Designer.cs">
+    <Compile Include="TableForms\KitapForm.Designer.cs">
       <DependentUpon>KitapForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="IslemForm.resx">
+    <Compile Include="TableForms\TurForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableForms\TurForm.Designer.cs">
+      <DependentUpon>TurForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Pages\SelectPage.resx">
+      <DependentUpon>SelectPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableForms\IslemForm.resx">
       <DependentUpon>IslemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KitapForm.resx">
+    <EmbeddedResource Include="TableForms\KitapForm.resx">
       <DependentUpon>KitapForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -84,6 +99,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TableForms\TurForm.resx">
+      <DependentUpon>TurForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

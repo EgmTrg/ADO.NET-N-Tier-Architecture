@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ADO.NET.Entity
 {
+    [Table(PrimaryColumn ="islemno",TableName = "Islem")]
     public class Islem : Table
     {
         public int islemno { get; set; }

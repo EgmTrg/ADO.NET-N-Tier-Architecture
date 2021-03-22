@@ -12,8 +12,9 @@ namespace ADO.NET.UI
 {
     public partial class MainForm : Form
     {
-        KitapForm kf = new KitapForm();
+        KitapForm kitapForm = new KitapForm();
         IslemForm islemform = new IslemForm();
+        TurForm turForm = new TurForm();
         
         public MainForm()
         {
@@ -22,10 +23,10 @@ namespace ADO.NET.UI
 
         private void kitapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (kf.IsDisposed)
-                kf = new KitapForm();
-            kf.MdiParent = this;
-            kf.Show();
+            if (kitapForm.IsDisposed)
+                kitapForm = new KitapForm();
+            kitapForm.MdiParent = this;
+            kitapForm.Show();
         }
 
         private void ıslemToolStripMenuItem_Click(object sender, EventArgs e)
@@ -34,6 +35,14 @@ namespace ADO.NET.UI
                 islemform = new IslemForm();
             islemform.MdiParent = this;
             islemform.Show();
+        }
+
+        private void turToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (turForm.IsDisposed)
+                turForm = new TurForm();
+            turForm.MdiParent = this;
+            turForm.Show();
         }
     }
 }

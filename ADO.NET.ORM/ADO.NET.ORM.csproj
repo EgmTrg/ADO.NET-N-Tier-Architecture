@@ -44,11 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IORM.cs" />
-    <Compile Include="IslemORM.cs" />
-    <Compile Include="KitapORM.cs" />
+    <Compile Include="TableORMs\IslemORM.cs" />
+    <Compile Include="TableORMs\KitapORM.cs" />
     <Compile Include="ORMBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools.cs" />
+    <Compile Include="TableORMs\TurORM.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ADO.NET.Entity\ADO.NET.Entity.csproj">
