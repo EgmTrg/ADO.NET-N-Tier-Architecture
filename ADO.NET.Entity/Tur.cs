@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ADO.NET.Entity
 {
-    [Table(PrimaryColumn ="turno",TableName ="Tur")]
     public class Tur : Table
     {
+        public override string PrimaryKey => "kitapno";
         public int turno { get; set; }
         public string ad { get; set; }
     }

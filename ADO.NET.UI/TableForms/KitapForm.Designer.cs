@@ -36,19 +36,20 @@ namespace ADO.NET.UI
             this.sayfaSayisi_label = new System.Windows.Forms.Label();
             this.puani_numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.yazar_label = new System.Windows.Forms.Label();
-            this.temizle_button = new System.Windows.Forms.Button();
             this.yazar_comboBox = new System.Windows.Forms.ComboBox();
             this.Ekle_button = new System.Windows.Forms.Button();
             this.tur_comboBox = new System.Windows.Forms.ComboBox();
             this.kitapAdi_label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Guncelle_button = new System.Windows.Forms.Button();
             this.yenile_button = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.editModeOnOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.sayfaSayisi_numericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puani_numericUpDown)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // puan_label
@@ -125,17 +126,6 @@ namespace ADO.NET.UI
             this.yazar_label.TabIndex = 1;
             this.yazar_label.Text = "Yazarı:";
             // 
-            // temizle_button
-            // 
-            this.temizle_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            this.temizle_button.Location = new System.Drawing.Point(986, 35);
-            this.temizle_button.Name = "temizle_button";
-            this.temizle_button.Size = new System.Drawing.Size(79, 31);
-            this.temizle_button.TabIndex = 0;
-            this.temizle_button.Text = "Sil";
-            this.temizle_button.UseVisualStyleBackColor = true;
-            this.temizle_button.Click += new System.EventHandler(this.temizle_button_Click);
-            // 
             // yazar_comboBox
             // 
             this.yazar_comboBox.Font = new System.Drawing.Font("Comic Sans MS", 12F);
@@ -150,7 +140,7 @@ namespace ADO.NET.UI
             this.Ekle_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
             this.Ekle_button.Location = new System.Drawing.Point(986, 3);
             this.Ekle_button.Name = "Ekle_button";
-            this.Ekle_button.Size = new System.Drawing.Size(79, 31);
+            this.Ekle_button.Size = new System.Drawing.Size(159, 31);
             this.Ekle_button.TabIndex = 0;
             this.Ekle_button.Text = "Ekle";
             this.Ekle_button.UseVisualStyleBackColor = true;
@@ -179,11 +169,9 @@ namespace ADO.NET.UI
             // 
             this.panel1.Controls.Add(this.kitapAdi_label);
             this.panel1.Controls.Add(this.tur_comboBox);
-            this.panel1.Controls.Add(this.Guncelle_button);
             this.panel1.Controls.Add(this.Ekle_button);
             this.panel1.Controls.Add(this.yazar_comboBox);
             this.panel1.Controls.Add(this.yenile_button);
-            this.panel1.Controls.Add(this.temizle_button);
             this.panel1.Controls.Add(this.yazar_label);
             this.panel1.Controls.Add(this.puani_numericUpDown);
             this.panel1.Controls.Add(this.sayfaSayisi_label);
@@ -192,28 +180,17 @@ namespace ADO.NET.UI
             this.panel1.Controls.Add(this.kitapAdi_textBox);
             this.panel1.Controls.Add(this.puan_label);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1157, 75);
             this.panel1.TabIndex = 8;
             // 
-            // Guncelle_button
-            // 
-            this.Guncelle_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            this.Guncelle_button.Location = new System.Drawing.Point(1068, 3);
-            this.Guncelle_button.Name = "Guncelle_button";
-            this.Guncelle_button.Size = new System.Drawing.Size(79, 31);
-            this.Guncelle_button.TabIndex = 0;
-            this.Guncelle_button.Text = "Guncelle";
-            this.Guncelle_button.UseVisualStyleBackColor = true;
-            this.Guncelle_button.Click += new System.EventHandler(this.Guncelle_Click);
-            // 
             // yenile_button
             // 
             this.yenile_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            this.yenile_button.Location = new System.Drawing.Point(1068, 35);
+            this.yenile_button.Location = new System.Drawing.Point(986, 35);
             this.yenile_button.Name = "yenile_button";
-            this.yenile_button.Size = new System.Drawing.Size(79, 31);
+            this.yenile_button.Size = new System.Drawing.Size(161, 31);
             this.yenile_button.TabIndex = 0;
             this.yenile_button.Text = "Yenile";
             this.yenile_button.UseVisualStyleBackColor = true;
@@ -224,11 +201,31 @@ namespace ADO.NET.UI
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 75);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 99);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1157, 656);
+            this.dataGridView1.Size = new System.Drawing.Size(1157, 632);
             this.dataGridView1.TabIndex = 9;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyDown);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.AllowMerge = false;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editModeOnOffToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1157, 24);
+            this.menuStrip1.TabIndex = 10;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // editModeOnOffToolStripMenuItem
+            // 
+            this.editModeOnOffToolStripMenuItem.Name = "editModeOnOffToolStripMenuItem";
+            this.editModeOnOffToolStripMenuItem.Size = new System.Drawing.Size(114, 20);
+            this.editModeOnOffToolStripMenuItem.Text = "Edit Mode On/Off";
+            this.editModeOnOffToolStripMenuItem.Click += new System.EventHandler(this.editModeOnOffToolStripMenuItem_Click);
             // 
             // KitapForm
             // 
@@ -237,6 +234,8 @@ namespace ADO.NET.UI
             this.ClientSize = new System.Drawing.Size(1157, 731);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "KitapForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KitapForm";
@@ -246,7 +245,10 @@ namespace ADO.NET.UI
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -259,7 +261,6 @@ namespace ADO.NET.UI
         private System.Windows.Forms.Label sayfaSayisi_label;
         private System.Windows.Forms.NumericUpDown puani_numericUpDown;
         private System.Windows.Forms.Label yazar_label;
-        private System.Windows.Forms.Button temizle_button;
         private System.Windows.Forms.ComboBox yazar_comboBox;
         private System.Windows.Forms.Button Ekle_button;
         private System.Windows.Forms.ComboBox tur_comboBox;
@@ -267,7 +268,8 @@ namespace ADO.NET.UI
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button yenile_button;
-        private System.Windows.Forms.Button Guncelle_button;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem editModeOnOffToolStripMenuItem;
     }
 }
 

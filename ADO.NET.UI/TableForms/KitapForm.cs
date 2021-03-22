@@ -1,6 +1,5 @@
 ﻿using ADO.NET.Entity;
 using ADO.NET.ORM;
-using ADO.NET.UI.Pages;
 using System;
 using System.Windows.Forms;
 
@@ -59,12 +58,6 @@ namespace ADO.NET.UI
             RefreshDataGridView();
         }
 
-        private void temizle_button_Click(object sender, EventArgs e)
-        {
-            bool durum = kitapORM.Delete(Convert.ToInt32(kitapAdi_textBox.Tag));
-            IslemDurumu(durum);
-        }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             kitapAdi_textBox.Text = dataGridView1.CurrentRow.Cells["Kitap Adi"].Value.ToString();
@@ -74,20 +67,6 @@ namespace ADO.NET.UI
             yazar_comboBox.SelectedValue = (int)dataGridView1.CurrentRow.Cells["YazarID"].Value;
         }
 
-        private void Guncelle_Click(object sender, EventArgs e)
-        {
-            Kitap kitap = new Kitap();
-            kitap.kitapno = Convert.ToInt32(kitapAdi_textBox.Tag);
-            kitap.ad = kitapAdi_textBox.Text;
-            kitap.puan = (int)puani_numericUpDown.Value;
-            kitap.sayfasayisi = (int)sayfaSayisi_numericUpDown.Value;
-            kitap.turno = (int)tur_comboBox.SelectedValue;
-            kitap.yazarno= (int)yazar_comboBox.SelectedValue;
-
-            bool durum = kitapORM.Update(kitap);
-            IslemDurumu(durum);
-        }
-
         private void IslemDurumu(bool durum)
         {
             if (durum)
@@ -95,6 +74,37 @@ namespace ADO.NET.UI
             else
                 MessageBox.Show("İşleminiz başarısız!.", "İşlem Durumu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             RefreshDataGridView();
+        }
+
+        private void editModeOnOffToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (panel1.Visible)
+                panel1.Visible = false;
+            else
+                panel1.Visible = true;
+        }
+
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Delete)
+            {
+                bool durum = kitapORM.Delete(Convert.ToInt32(kitapAdi_textBox.Tag));
+                IslemDurumu(durum);
+            }
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            Kitap kitap = new Kitap();
+            kitap.kitapno = Convert.ToInt32(kitapAdi_textBox.Tag);
+            kitap.ad = dataGridView1.CurrentRow.Cells["Kitap Adi"].Value.ToString();
+            kitap.puan = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Puan"].Value);
+            kitap.sayfasayisi = Convert.ToInt32(dataGridView1.CurrentRow.Cells["Sayfa Sayisi"].Value);
+            kitap.yazarno = Convert.ToInt32(yazar_comboBox.SelectedValue);
+            kitap.turno = Convert.ToInt32(tur_comboBox.SelectedValue);
+
+            bool durum = kitapORM.Update(kitap);
+            IslemDurumu(durum);
         }
     }
 }

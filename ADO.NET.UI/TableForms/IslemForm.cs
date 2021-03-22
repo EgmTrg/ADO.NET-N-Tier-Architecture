@@ -23,5 +23,10 @@ namespace ADO.NET.UI
             IslemORM islemORM = new IslemORM();
             dataGridView1.DataSource = islemORM.Select();
         }
+
+        private void duzenlemeModuAcKapatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

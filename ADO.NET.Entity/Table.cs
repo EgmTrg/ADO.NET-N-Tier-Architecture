@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ADO.NET.Entity
 {
-    public class Table : Attribute
+    public abstract class Table
     {
-        public string TableName { get; set; }
-        public string PrimaryColumn { get; set; }
+        //public abstract string TableName { get; set; }
+        public abstract string PrimaryKey { get;}
     }
 }
