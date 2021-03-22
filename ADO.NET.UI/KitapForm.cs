@@ -25,18 +25,18 @@ namespace ADO.NET.UI
         {
             RefreshDataGridView();
 
-            yazar_comboBox.DataSource = kitapORM.Listele();// burayada yazar tablosu gelecek. O da daha eklenmedigi icin yazmadim.
+            yazar_comboBox.DataSource = kitapORM.Select();// burayada yazar tablosu gelecek. O da daha eklenmedigi icin yazmadim.
             yazar_comboBox.DisplayMember = "Yazar Ad/Soyad";
             yazar_comboBox.ValueMember = "YazarID";
 
-            tur_comboBox.DataSource = kitapORM.Listele(); // burada normalde tur tablosu gelecek. Ama daha eklenemdiginden dolayi bunu yazdim.
+            tur_comboBox.DataSource = kitapORM.Select(); // burada normalde tur tablosu gelecek. Ama daha eklenemdiginden dolayi bunu yazdim.
             tur_comboBox.DisplayMember = "Tur Adi";
             tur_comboBox.ValueMember = "TurID";
         }
 
         private void RefreshDataGridView()
         {
-            dataGridView1.DataSource = kitapORM.Listele();
+            dataGridView1.DataSource = kitapORM.Select();
 
             dataGridView1.Columns["KitapID"].Visible = false;
             dataGridView1.Columns["TurNo"].Visible = false;
@@ -56,7 +56,7 @@ namespace ADO.NET.UI
             kitap.yazarno = Convert.ToInt32(yazar_comboBox.SelectedValue);
             kitap.turno = Convert.ToInt32(tur_comboBox.SelectedValue);
 
-            bool durum = kitapORM.Ekle(kitap);
+            bool durum = kitapORM.Insert(kitap);
             IslemDurumu(durum);
         }
 
@@ -67,7 +67,7 @@ namespace ADO.NET.UI
 
         private void temizle_button_Click(object sender, EventArgs e)
         {
-            bool durum = kitapORM.Sil(Convert.ToInt32(kitapAdi_textBox.Tag));
+            bool durum = kitapORM.Delete(Convert.ToInt32(kitapAdi_textBox.Tag));
             IslemDurumu(durum);
         }
 
@@ -90,7 +90,7 @@ namespace ADO.NET.UI
             kitap.turno = (int)tur_comboBox.SelectedValue;
             kitap.yazarno= (int)yazar_comboBox.SelectedValue;
 
-            bool durum = kitapORM.Guncelle(kitap);
+            bool durum = kitapORM.Update(kitap);
             IslemDurumu(durum);
         }
 

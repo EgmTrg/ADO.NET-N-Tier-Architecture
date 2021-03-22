@@ -21,7 +21,7 @@ namespace ADO.NET.UI
         private void IslemForm_Load(object sender, EventArgs e)
         {
             IslemORM islemORM = new IslemORM();
-            dataGridView1.DataSource = islemORM.Listele();
+            dataGridView1.DataSource = islemORM.Select();
         }
     }
 }

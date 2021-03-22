@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ADO.NET.Entity
 {
-    public class Kitap : EntityBase
+    [Table(PrimaryColumn = "kitapno",TableName ="Kitap")]
+    public class Kitap : Table
     {
-        public override string PrimaryKey => "kitapno";
         public int kitapno { get; set; }
         public string ad { get; set; }
         public int sayfasayisi { get; set; }

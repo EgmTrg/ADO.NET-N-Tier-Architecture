@@ -9,14 +9,16 @@ using System.Threading.Tasks;
 
 namespace ADO.NET.ORM
 {
-    public class ORMBase<tTable> : IORM<tTable>
+    public class ORMBase<tTable> : IORM<tTable> where tTable : class
     {
         public Type getPropertyType
         {
             get { return typeof(tTable); }
         }
 
-        public bool Ekle(tTable table)
+        // Ekle ve select sorgulari neredeyse ayni. Bunlari tek bir methoda donustur.
+
+        public bool Insert(tTable table)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = string.Format("Insert{0}", getPropertyType.Name);
@@ -32,7 +34,7 @@ namespace ADO.NET.ORM
             return Tools.ExecuteNonQuery(cmd);
         }
 
-        public bool Guncelle(tTable table)
+        public bool Update(tTable table)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = string.Format("Update{0}", getPropertyType.Name);
@@ -48,7 +50,7 @@ namespace ADO.NET.ORM
             return Tools.ExecuteNonQuery(cmd);
         }
 
-        public DataTable Listele()
+        public DataTable Select()
         {
             SqlDataAdapter adp = new SqlDataAdapter();
             SqlCommand cmd = new SqlCommand();
@@ -61,7 +63,7 @@ namespace ADO.NET.ORM
             return dt;
         }
 
-        public bool Sil(int id)
+        public bool Delete(int id)
         {
             tTable table = Activator.CreateInstance<tTable>();
             SqlCommand cmd = new SqlCommand();
