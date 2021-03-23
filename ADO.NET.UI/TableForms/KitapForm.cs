@@ -8,6 +8,7 @@ namespace ADO.NET.UI
     public partial class KitapForm : Form
     {
         KitapORM kitapORM = new KitapORM();
+        TurORM turORM = new TurORM();
 
         public KitapForm()
         {
@@ -16,18 +17,18 @@ namespace ADO.NET.UI
 
         private void KitapForm_Load(object sender, EventArgs e)
         {
-            RefreshDataGridView();
+            RefreshDataSource();
 
             yazar_comboBox.DataSource = kitapORM.Select();// burayada yazar tablosu gelecek. O da daha eklenmedigi icin yazmadim.
             yazar_comboBox.DisplayMember = "Yazar Ad/Soyad";
             yazar_comboBox.ValueMember = "YazarID";
 
-            tur_comboBox.DataSource = kitapORM.Select(); // burada normalde tur tablosu gelecek. Ama daha eklenemdiginden dolayi bunu yazdim.
+            tur_comboBox.DataSource = turORM.Select(); // burada normalde tur tablosu gelecek. Ama daha eklenemdiginden dolayi bunu yazdim.
             tur_comboBox.DisplayMember = "Tur Adi";
             tur_comboBox.ValueMember = "TurID";
         }
 
-        private void RefreshDataGridView()
+        private void RefreshDataSource()
         {
             dataGridView1.DataSource = kitapORM.Select();
 
@@ -55,7 +56,7 @@ namespace ADO.NET.UI
 
         private void yenile_button_Click(object sender, EventArgs e)
         {
-            RefreshDataGridView();
+            RefreshDataSource();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -73,7 +74,7 @@ namespace ADO.NET.UI
                 MessageBox.Show("İşleminiz başarılı bir şekilde gerçekleşmiştir.","İşlem Durumu!",MessageBoxButtons.OK,MessageBoxIcon.Information);
             else
                 MessageBox.Show("İşleminiz başarısız!.", "İşlem Durumu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            RefreshDataGridView();
+            RefreshDataSource();
         }
 
         private void editModeOnOffToolStripMenuItem_Click(object sender, EventArgs e)

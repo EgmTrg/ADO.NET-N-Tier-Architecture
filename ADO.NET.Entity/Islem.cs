@@ -8,7 +8,7 @@ namespace ADO.NET.Entity
 {
     public class Islem : Table
     {
-        public override string PrimaryKey => "kitapno";
+        public override string PrimaryKey => "islemno";
         public int islemno { get; set; }
         public int ogrno { get; set; }
         public int kitapno { get; set; }
