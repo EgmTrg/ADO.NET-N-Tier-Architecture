@@ -161,7 +161,6 @@ namespace ADO.NET.UI
             this.kitapName_comboBox.Name = "kitapName_comboBox";
             this.kitapName_comboBox.Size = new System.Drawing.Size(253, 31);
             this.kitapName_comboBox.TabIndex = 0;
-            this.kitapName_comboBox.SelectedIndexChanged += new System.EventHandler(this.kitapName_comboBox_SelectedIndexChanged);
             // 
             // ogrNameSurname_comboBox
             // 

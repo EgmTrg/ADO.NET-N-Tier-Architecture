@@ -6,13 +6,62 @@ using System.Windows.Forms;
 
 namespace ADO.NET.UI
 {
-    public partial class IslemForm : Form
+    public partial class IslemForm : Form, ITools
     {
         IslemORM islemORM = new IslemORM();
         KitapORM kitapORM = new KitapORM();
         //OgrenciORM ogrenciORM = new OgrenciORM();
 
         Dictionary<string, string> CurrentRowItems = new Dictionary<string, string>();
+        #region Interface Methods
+        public void EditMode()
+        {
+            if (panel1.Visible)
+            {
+                panel1.Visible = false;
+                ekleToolStripMenuItem.Visible = false;
+            }
+            else
+            {
+                panel1.Visible = true;
+                ekleToolStripMenuItem.Visible = true;
+            }
+        }
+
+        public void TransactionStatus(bool statement)
+        {
+            if (statement)
+                MessageBox.Show("İşleminiz başarılı bir şekilde gerçekleşmiştir.", "İşlem Durumu!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("İşleminiz başarısız!", "İşlem Durumu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            RefreshDataSource();
+        }
+
+        public void RefreshDataSource()
+        {
+            dataGridView.DataSource = islemORM.Select();
+
+            dataGridView.Columns["islemNo"].Visible = false;
+            dataGridView.Columns["kitapno"].Visible = false;
+
+            dataGridView.Columns[0].Width = 100;
+            dataGridView.Columns[1].Width = 100;
+            dataGridView.Columns[2].Width = 120;
+            dataGridView.Columns[3].Width = 90;
+            dataGridView.Columns[4].Width = 300;
+            dataGridView.Columns[5].Width = 100;
+            dataGridView.Columns[6].Width = 100;
+        }
+
+        public void KeyDown_HotKeys(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                bool durum = islemORM.Delete(Convert.ToInt32(dataGridView.CurrentRow.Cells["IslemNo"].Value));
+                TransactionStatus(durum);
+            }
+        }
+        #endregion
 
         public IslemForm()
         {
@@ -41,34 +90,9 @@ namespace ADO.NET.UI
             ogrNameSurname_comboBox.ValueMember = "OgrenciNo";
         }
 
-        private void RefreshDataSource()
-        {
-            dataGridView.DataSource = islemORM.Select();
-
-            dataGridView.Columns["islemNo"].Visible = false;
-            dataGridView.Columns["kitapno"].Visible = false;
-
-            dataGridView.Columns[0].Width = 100;
-            dataGridView.Columns[1].Width = 100;
-            dataGridView.Columns[2].Width = 120;
-            dataGridView.Columns[3].Width = 90;
-            dataGridView.Columns[4].Width = 300;
-            dataGridView.Columns[5].Width = 100;
-            dataGridView.Columns[6].Width = 100;
-        }
-
         private void editModeOnOffToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (panel1.Visible)
-            {
-                panel1.Visible = false;
-                ekleToolStripMenuItem.Visible = false;
-            }
-            else
-            {
-                panel1.Visible = true;
-                ekleToolStripMenuItem.Visible = true;
-            }
+            EditMode();
         }
 
         private void dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -91,20 +115,11 @@ namespace ADO.NET.UI
                 islem.vtarih = Convert.ToDateTime(dataGridView.CurrentRow.Cells["Teslim Tarihi"].Value);
 
                 bool statement = islemORM.Update(islem);
-                IslemDurumu(statement);
+                TransactionStatus(statement);
             }
             else
                 MessageBox.Show("İşleminiz başarısız!.", "İşlem Durumu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-        }
-
-        private void IslemDurumu(bool statement)
-        {
-            if (statement)
-                MessageBox.Show("İşleminiz başarılı bir şekilde gerçekleşmiştir.", "İşlem Durumu!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show("İşleminiz başarısız!", "İşlem Durumu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            RefreshDataSource();
         }
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -127,24 +142,15 @@ namespace ADO.NET.UI
                 islem.ogrno = Convert.ToInt32(ogrNameSurname_comboBox.SelectedValue);
 
                 bool durum = islemORM.Insert(islem);
-                IslemDurumu(durum);
+                TransactionStatus(durum);
             }
             else
                 MessageBox.Show("Lutfen Bos Alanlari Doldurunuz!", "İşlem Durumu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
-        private void kitapName_comboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //delete
-        }
-
         private void dataGridView_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete)
-            {
-                bool durum = islemORM.Delete(Convert.ToInt32(dataGridView.CurrentRow.Cells["IslemNo"].Value));
-                IslemDurumu(durum);
-            }
+            KeyDown_HotKeys(e);
         }
     }
 }

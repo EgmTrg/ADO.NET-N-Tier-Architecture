@@ -5,10 +5,56 @@ using System.Windows.Forms;
 
 namespace ADO.NET.UI
 {
-    public partial class KitapForm : Form
+    public partial class KitapForm : Form, ITools
     {
         KitapORM kitapORM = new KitapORM();
         TurORM turORM = new TurORM();
+        #region Interface Methods
+        public void EditMode()
+        {
+            /*if (panel1.Visible)
+            {
+                panel1.Visible = false;
+                ekleToolStripMenuItem.Visible = false;
+            }
+            else
+            {
+                panel1.Visible = true;
+                ekleToolStripMenuItem.Visible = true;
+            }*/
+        }
+
+        public void TransactionStatus(bool statement)
+        {
+            if (statement)
+                MessageBox.Show("İşleminiz başarılı bir şekilde gerçekleşmiştir.", "İşlem Durumu!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("İşleminiz başarısız!", "İşlem Durumu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            RefreshDataSource();
+        }
+
+        public void RefreshDataSource()
+        {
+            dataGridView1.DataSource = kitapORM.Select();
+
+            dataGridView1.Columns["KitapID"].Visible = false;
+            dataGridView1.Columns["TurNo"].Visible = false;
+            dataGridView1.Columns["YazarNo"].Visible = false;
+            dataGridView1.Columns["YazarID"].Visible = false;
+            dataGridView1.Columns["TurID"].Visible = false;
+            dataGridView1.Columns["Yazar Adi"].Visible = false;
+            dataGridView1.Columns["Yazar Soyadi"].Visible = false;
+        }
+
+        public void KeyDown_HotKeys(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                bool durum = kitapORM.Delete(Convert.ToInt32(dataGridView1.CurrentRow.Cells["IslemNo"].Value));
+                TransactionStatus(durum);
+            }
+        }
+        #endregion
 
         public KitapForm()
         {
@@ -28,19 +74,6 @@ namespace ADO.NET.UI
             tur_comboBox.ValueMember = "TurID";
         }
 
-        private void RefreshDataSource()
-        {
-            dataGridView1.DataSource = kitapORM.Select();
-
-            dataGridView1.Columns["KitapID"].Visible = false;
-            dataGridView1.Columns["TurNo"].Visible = false;
-            dataGridView1.Columns["YazarNo"].Visible = false;
-            dataGridView1.Columns["YazarID"].Visible = false;
-            dataGridView1.Columns["TurID"].Visible = false;
-            dataGridView1.Columns["Yazar Adi"].Visible = false;
-            dataGridView1.Columns["Yazar Soyadi"].Visible = false;
-        }
-
         private void ekle_button_Click(object sender, EventArgs e)
         {
             Kitap kitap = new Kitap();
@@ -51,7 +84,7 @@ namespace ADO.NET.UI
             kitap.turno = Convert.ToInt32(tur_comboBox.SelectedValue);
 
             bool durum = kitapORM.Insert(kitap);
-            IslemDurumu(durum);
+            TransactionStatus(durum);
         }
 
         private void yenile_button_Click(object sender, EventArgs e)
@@ -68,30 +101,14 @@ namespace ADO.NET.UI
             yazar_comboBox.SelectedValue = (int)dataGridView1.CurrentRow.Cells["YazarID"].Value;
         }
 
-        private void IslemDurumu(bool durum)
-        {
-            if (durum)
-                MessageBox.Show("İşleminiz başarılı bir şekilde gerçekleşmiştir.","İşlem Durumu!",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            else
-                MessageBox.Show("İşleminiz başarısız!.", "İşlem Durumu!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            RefreshDataSource();
-        }
-
         private void editModeOnOffToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (panel1.Visible)
-                panel1.Visible = false;
-            else
-                panel1.Visible = true;
+            EditMode();
         }
 
         private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Delete)
-            {
-                bool durum = kitapORM.Delete(Convert.ToInt32(kitapAdi_textBox.Tag));
-                IslemDurumu(durum);
-            }
+            //KeyDown_HotKeys();
         }
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -105,7 +122,7 @@ namespace ADO.NET.UI
             kitap.turno = Convert.ToInt32(tur_comboBox.SelectedValue);
 
             bool durum = kitapORM.Update(kitap);
-            IslemDurumu(durum);
+            TransactionStatus(durum);
         }
     }
 }
