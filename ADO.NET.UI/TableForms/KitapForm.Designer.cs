@@ -37,14 +37,16 @@ namespace ADO.NET.UI
             this.puani_numericUpDown = new System.Windows.Forms.NumericUpDown();
             this.yazar_label = new System.Windows.Forms.Label();
             this.yazar_comboBox = new System.Windows.Forms.ComboBox();
-            this.Ekle_button = new System.Windows.Forms.Button();
             this.tur_comboBox = new System.Windows.Forms.ComboBox();
             this.kitapAdi_label = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.yenile_button = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.editModeOnOffToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ekleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yenileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resimEkleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.sayfaSayisi_numericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puani_numericUpDown)).BeginInit();
             this.panel1.SuspendLayout();
@@ -135,17 +137,6 @@ namespace ADO.NET.UI
             this.yazar_comboBox.Size = new System.Drawing.Size(240, 31);
             this.yazar_comboBox.TabIndex = 7;
             // 
-            // Ekle_button
-            // 
-            this.Ekle_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            this.Ekle_button.Location = new System.Drawing.Point(986, 3);
-            this.Ekle_button.Name = "Ekle_button";
-            this.Ekle_button.Size = new System.Drawing.Size(159, 31);
-            this.Ekle_button.TabIndex = 0;
-            this.Ekle_button.Text = "Ekle";
-            this.Ekle_button.UseVisualStyleBackColor = true;
-            this.Ekle_button.Click += new System.EventHandler(this.ekle_button_Click);
-            // 
             // tur_comboBox
             // 
             this.tur_comboBox.Font = new System.Drawing.Font("Comic Sans MS", 12F);
@@ -169,9 +160,7 @@ namespace ADO.NET.UI
             // 
             this.panel1.Controls.Add(this.kitapAdi_label);
             this.panel1.Controls.Add(this.tur_comboBox);
-            this.panel1.Controls.Add(this.Ekle_button);
             this.panel1.Controls.Add(this.yazar_comboBox);
-            this.panel1.Controls.Add(this.yenile_button);
             this.panel1.Controls.Add(this.yazar_label);
             this.panel1.Controls.Add(this.puani_numericUpDown);
             this.panel1.Controls.Add(this.sayfaSayisi_label);
@@ -182,28 +171,18 @@ namespace ADO.NET.UI
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1157, 75);
+            this.panel1.Size = new System.Drawing.Size(987, 75);
             this.panel1.TabIndex = 8;
-            // 
-            // yenile_button
-            // 
-            this.yenile_button.Font = new System.Drawing.Font("Comic Sans MS", 12F);
-            this.yenile_button.Location = new System.Drawing.Point(986, 35);
-            this.yenile_button.Name = "yenile_button";
-            this.yenile_button.Size = new System.Drawing.Size(161, 31);
-            this.yenile_button.TabIndex = 0;
-            this.yenile_button.Text = "Yenile";
-            this.yenile_button.UseVisualStyleBackColor = true;
-            this.yenile_button.Click += new System.EventHandler(this.yenile_button_Click);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 99);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1157, 632);
+            this.dataGridView1.Size = new System.Drawing.Size(987, 632);
             this.dataGridView1.TabIndex = 9;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
@@ -213,10 +192,13 @@ namespace ADO.NET.UI
             // 
             this.menuStrip1.AllowMerge = false;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editModeOnOffToolStripMenuItem});
+            this.editModeOnOffToolStripMenuItem,
+            this.yenileToolStripMenuItem,
+            this.ekleToolStripMenuItem,
+            this.resimEkleToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1157, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(987, 24);
             this.menuStrip1.TabIndex = 10;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -227,11 +209,36 @@ namespace ADO.NET.UI
             this.editModeOnOffToolStripMenuItem.Text = "Edit Mode On/Off";
             this.editModeOnOffToolStripMenuItem.Click += new System.EventHandler(this.editModeOnOffToolStripMenuItem_Click);
             // 
+            // ekleToolStripMenuItem
+            // 
+            this.ekleToolStripMenuItem.Name = "ekleToolStripMenuItem";
+            this.ekleToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.ekleToolStripMenuItem.Text = "Ekle";
+            this.ekleToolStripMenuItem.Click += new System.EventHandler(this.ekleToolStripMenuItem_Click);
+            // 
+            // yenileToolStripMenuItem
+            // 
+            this.yenileToolStripMenuItem.Name = "yenileToolStripMenuItem";
+            this.yenileToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.yenileToolStripMenuItem.Text = "Yenile";
+            this.yenileToolStripMenuItem.Click += new System.EventHandler(this.yenileToolStripMenuItem_Click);
+            // 
+            // resimEkleToolStripMenuItem
+            // 
+            this.resimEkleToolStripMenuItem.Name = "resimEkleToolStripMenuItem";
+            this.resimEkleToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.resimEkleToolStripMenuItem.Text = "ResimEkle";
+            this.resimEkleToolStripMenuItem.Click += new System.EventHandler(this.resimEkleToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // KitapForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1157, 731);
+            this.ClientSize = new System.Drawing.Size(987, 731);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
@@ -262,14 +269,16 @@ namespace ADO.NET.UI
         private System.Windows.Forms.NumericUpDown puani_numericUpDown;
         private System.Windows.Forms.Label yazar_label;
         private System.Windows.Forms.ComboBox yazar_comboBox;
-        private System.Windows.Forms.Button Ekle_button;
         private System.Windows.Forms.ComboBox tur_comboBox;
         private System.Windows.Forms.Label kitapAdi_label;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button yenile_button;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem editModeOnOffToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ekleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem yenileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resimEkleToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

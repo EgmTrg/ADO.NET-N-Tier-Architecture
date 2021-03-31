@@ -1,6 +1,8 @@
 ﻿using ADO.NET.Entity;
 using ADO.NET.ORM;
+using ADO.NET.ORM.TableORMs;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ADO.NET.UI
@@ -12,7 +14,7 @@ namespace ADO.NET.UI
         #region Interface Methods
         public void EditMode()
         {
-            /*if (panel1.Visible)
+            if (panel1.Visible)
             {
                 panel1.Visible = false;
                 ekleToolStripMenuItem.Visible = false;
@@ -21,7 +23,7 @@ namespace ADO.NET.UI
             {
                 panel1.Visible = true;
                 ekleToolStripMenuItem.Visible = true;
-            }*/
+            }
         }
 
         public void TransactionStatus(bool statement)
@@ -74,24 +76,6 @@ namespace ADO.NET.UI
             tur_comboBox.ValueMember = "TurID";
         }
 
-        private void ekle_button_Click(object sender, EventArgs e)
-        {
-            Kitap kitap = new Kitap();
-            kitap.ad = kitapAdi_textBox.Text;
-            kitap.puan = Convert.ToInt32(puani_numericUpDown.Value);
-            kitap.sayfasayisi = Convert.ToInt32(sayfaSayisi_numericUpDown.Value);
-            kitap.yazarno = Convert.ToInt32(yazar_comboBox.SelectedValue);
-            kitap.turno = Convert.ToInt32(tur_comboBox.SelectedValue);
-
-            bool durum = kitapORM.Insert(kitap);
-            TransactionStatus(durum);
-        }
-
-        private void yenile_button_Click(object sender, EventArgs e)
-        {
-            RefreshDataSource();
-        }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             kitapAdi_textBox.Text = dataGridView1.CurrentRow.Cells["Kitap Adi"].Value.ToString();
@@ -123,6 +107,59 @@ namespace ADO.NET.UI
 
             bool durum = kitapORM.Update(kitap);
             TransactionStatus(durum);
+        }
+
+        private void ekleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Kitap kitap = new Kitap();
+            kitap.ad = kitapAdi_textBox.Text;
+            kitap.puan = Convert.ToInt32(puani_numericUpDown.Value);
+            kitap.sayfasayisi = Convert.ToInt32(sayfaSayisi_numericUpDown.Value);
+            kitap.yazarno = Convert.ToInt32(yazar_comboBox.SelectedValue);
+            kitap.turno = Convert.ToInt32(tur_comboBox.SelectedValue);
+
+            bool durum = kitapORM.Insert(kitap);
+            TransactionStatus(durum);
+        }
+
+        private void yenileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                RefreshDataSource();
+            }
+            catch(Exception) { }
+        }
+
+        private void resimEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow == null)
+                return;
+
+            int id = (int)dataGridView1.CurrentRow.Cells["KitapID"].Value;
+            openFileDialog1.Filter = "Jpg |*.jpg|Png |*.png";
+
+            DialogResult res = openFileDialog1.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                FileStream fs = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read);
+                BinaryReader binary = new BinaryReader(fs);
+                byte[] resim = binary.ReadBytes((int)fs.Length);
+                binary.Close();
+                fs.Close();
+
+                KitapResim kr = new KitapResim();
+                kr.kitapno = id;
+                kr.resim = resim;
+                if (new KitapResimORM().Insert(kr))
+                {
+                    MessageBox.Show("Resim eklendi");
+                }
+                else
+                {
+                    MessageBox.Show("Resim eklenemedi");
+                }
+            }
         }
     }
 }
